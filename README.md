@@ -1,28 +1,227 @@
-# Cow wisdom web server
+# Wisecow DevOps Assessment
 
-## Prerequisites
+## Project Overview
 
+This project demonstrates the containerization, deployment, and CI/CD automation of the Wisecow application as part of the AccuKnox DevOps Trainee Assessment.
+
+The application generates random wisdom messages using cowsay and fortune packages and serves them through a lightweight web service.
+
+---
+
+## Features
+
+- Dockerized Wisecow application
+- Kubernetes deployment on Minikube
+- Kubernetes Service exposure
+- Ingress configuration
+- TLS configuration
+- GitHub Actions CI/CD pipeline
+- Docker Hub image publishing
+
+---
+
+## Project Structure
+
+```text
+.
+├── Dockerfile
+├── wisecow.sh
+├── k8s
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── ingress.yaml
+├── scripts
+│   ├── system_health_monitor.py
+│   └── application_health_checker.py
+└── .github
+    └── workflows
+        └── ci-cd.yml
 ```
-sudo apt install fortune-mod cowsay -y
+
+---
+
+## Docker Image
+
+Docker Hub Repository:
+
+tapupan/wisecow:latest
+
+Pull image:
+
+```bash
+docker pull tapupan/wisecow:latest
 ```
 
-## How to use?
+Run locally:
 
-1. Run `./wisecow.sh`
-2. Point the browser to server port (default 4499)
+```bash
+docker run -d -p 4499:4499 tapupan/wisecow:latest
+```
 
-## What to expect?
-![wisecow](https://github.com/nyrahul/wisecow/assets/9133227/8d6bfde3-4a5a-480e-8d55-3fef60300d98)
+---
 
-# Problem Statement
-Deploy the wisecow application as a k8s app
+## Kubernetes Deployment
 
-## Requirement
-1. Create Dockerfile for the image and corresponding k8s manifest to deploy in k8s env. The wisecow service should be exposed as k8s service.
-2. Github action for creating new image when changes are made to this repo
-3. [Challenge goal]: Enable secure TLS communication for the wisecow app.
+Deploy resources:
 
-## Expected Artifacts
-1. Github repo containing the app with corresponding dockerfile, k8s manifest, any other artifacts needed.
-2. Github repo with corresponding github action.
-3. Github repo should be kept private and the access should be enabled for following github IDs: nyrahul
+```bash
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/ingress.yaml
+```
+
+Verify:
+
+```bash
+kubectl get pods
+kubectl get svc
+kubectl get ingress
+```
+
+---
+
+## CI/CD Pipeline
+
+GitHub Actions automatically:
+
+1. Builds Docker image
+2. Logs into Docker Hub
+3. Pushes image to Docker Hub
+
+Triggered on every push to the main branch.
+
+---
+
+## Deployment Verification
+
+Successfully verified:
+
+- Docker container running locally
+- Application accessible on localhost:4499
+- Kubernetes pods running
+- Service accessible through Minikube
+- Docker image pushed to Docker Hub
+- GitHub Actions workflow completed successfully
+
+---
+
+## Author
+
+Breed Varpe
+
+GitHub:
+https://github.com/Breedv
+
+# Wisecow DevOps Assessment
+
+## Project Overview
+
+This project demonstrates the containerization, deployment, and CI/CD automation of the Wisecow application as part of the AccuKnox DevOps Trainee Assessment.
+
+The application generates random wisdom messages using cowsay and fortune packages and serves them through a lightweight web service.
+
+---
+
+## Features
+
+- Dockerized Wisecow application
+- Kubernetes deployment on Minikube
+- Kubernetes Service exposure
+- Ingress configuration
+- TLS configuration
+- GitHub Actions CI/CD pipeline
+- Docker Hub image publishing
+
+---
+
+## Project Structure
+
+```text
+.
+├── Dockerfile
+├── wisecow.sh
+├── k8s
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── ingress.yaml
+├── scripts
+│   ├── system_health_monitor.py
+│   └── application_health_checker.py
+└── .github
+    └── workflows
+        └── ci-cd.yml
+```
+
+---
+
+## Docker Image
+
+Docker Hub Repository:
+
+tapupan/wisecow:latest
+
+Pull image:
+
+```bash
+docker pull tapupan/wisecow:latest
+```
+
+Run locally:
+
+```bash
+docker run -d -p 4499:4499 tapupan/wisecow:latest
+```
+
+---
+
+## Kubernetes Deployment
+
+Deploy resources:
+
+```bash
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/ingress.yaml
+```
+
+Verify:
+
+```bash
+kubectl get pods
+kubectl get svc
+kubectl get ingress
+```
+
+---
+
+## CI/CD Pipeline
+
+GitHub Actions automatically:
+
+1. Builds Docker image
+2. Logs into Docker Hub
+3. Pushes image to Docker Hub
+
+Triggered on every push to the main branch.
+
+---
+
+## Deployment Verification
+
+Successfully verified:
+
+- Docker container running locally
+- Application accessible on localhost:4499
+- Kubernetes pods running
+- Service accessible through Minikube
+- Docker image pushed to Docker Hub
+- GitHub Actions workflow completed successfully
+
+---
+
+## Author
+
+Breed Varpe
+
+GitHub:
+https://github.com/Breedv
