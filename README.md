@@ -2,21 +2,23 @@
 
 ## Project Overview
 
-This project demonstrates the containerization, deployment, and CI/CD automation of the Wisecow application as part of the AccuKnox DevOps Trainee Assessment.
+This project demonstrates the containerization, deployment, monitoring, and CI/CD automation of the Wisecow application as part of the AccuKnox DevOps Trainee Assessment.
 
-The application generates random wisdom messages using cowsay and fortune packages and serves them through a lightweight web service.
+The application generates random wisdom messages using `cowsay` and `fortune` packages and serves them through a lightweight web service.
 
 ---
 
+# Problem Statement 1
+
 ## Features
 
-- Dockerized Wisecow application
-- Kubernetes deployment on Minikube
-- Kubernetes Service exposure
-- Ingress configuration
-- TLS configuration
-- GitHub Actions CI/CD pipeline
-- Docker Hub image publishing
+* Dockerized Wisecow application
+* Kubernetes deployment on Minikube
+* Kubernetes Service exposure
+* Ingress configuration
+* TLS configuration
+* GitHub Actions CI/CD pipeline
+* Docker Hub image publishing
 
 ---
 
@@ -25,6 +27,7 @@ The application generates random wisdom messages using cowsay and fortune packag
 ```text
 .
 ├── Dockerfile
+├── README.md
 ├── wisecow.sh
 ├── k8s
 │   ├── deployment.yaml
@@ -44,7 +47,9 @@ The application generates random wisdom messages using cowsay and fortune packag
 
 Docker Hub Repository:
 
+```text
 tapupan/wisecow:latest
+```
 
 Pull image:
 
@@ -70,7 +75,7 @@ kubectl apply -f k8s/service.yaml
 kubectl apply -f k8s/ingress.yaml
 ```
 
-Verify:
+Verify deployment:
 
 ```bash
 kubectl get pods
@@ -88,7 +93,7 @@ GitHub Actions automatically:
 2. Logs into Docker Hub
 3. Pushes image to Docker Hub
 
-Triggered on every push to the main branch.
+The workflow is triggered automatically on every push to the `main` branch.
 
 ---
 
@@ -96,132 +101,97 @@ Triggered on every push to the main branch.
 
 Successfully verified:
 
-- Docker container running locally
-- Application accessible on localhost:4499
-- Kubernetes pods running
-- Service accessible through Minikube
-- Docker image pushed to Docker Hub
-- GitHub Actions workflow completed successfully
+* Docker container running locally
+* Application accessible on localhost:4499
+* Kubernetes pods running
+* Service accessible through Minikube
+* Docker image pushed to Docker Hub
+* GitHub Actions workflow completed successfully
 
 ---
 
-## Author
+# Problem Statement 2
 
-Breed Varpe
+## Objective 1: System Health Monitoring Script
 
-GitHub:
-https://github.com/Breedv
+Implemented a Python-based monitoring solution for Linux system health.
 
-# Wisecow DevOps Assessment
+### Features
 
-## Project Overview
+* CPU usage monitoring
+* Memory usage monitoring
+* Disk usage monitoring
+* Running process monitoring
+* Threshold-based alert generation
+* Alert logging support
 
-This project demonstrates the containerization, deployment, and CI/CD automation of the Wisecow application as part of the AccuKnox DevOps Trainee Assessment.
+### Run
 
-The application generates random wisdom messages using cowsay and fortune packages and serves them through a lightweight web service.
+```bash
+python scripts/system_health_monitor.py
+```
 
----
-
-## Features
-
-- Dockerized Wisecow application
-- Kubernetes deployment on Minikube
-- Kubernetes Service exposure
-- Ingress configuration
-- TLS configuration
-- GitHub Actions CI/CD pipeline
-- Docker Hub image publishing
-
----
-
-## Project Structure
+### Sample Output
 
 ```text
-.
-├── Dockerfile
-├── wisecow.sh
-├── k8s
-│   ├── deployment.yaml
-│   ├── service.yaml
-│   └── ingress.yaml
-├── scripts
-│   ├── system_health_monitor.py
-│   └── application_health_checker.py
-└── .github
-    └── workflows
-        └── ci-cd.yml
+SYSTEM HEALTH REPORT
+
+CPU Usage: 12.8%
+Memory Usage: 79.7%
+Disk Usage: 74.5%
+Running Processes: 336
+
+System is healthy.
 ```
 
 ---
 
-## Docker Image
+## Objective 4: Application Health Checker
 
-Docker Hub Repository:
+Implemented a Python-based application monitoring solution that verifies service availability using HTTP status codes.
 
-tapupan/wisecow:latest
+### Features
 
-Pull image:
+* Application availability monitoring
+* HTTP status code validation
+* UP/DOWN status reporting
+* Exception handling
+
+### Run
 
 ```bash
-docker pull tapupan/wisecow:latest
+python scripts/application_health_checker.py
 ```
 
-Run locally:
+### Sample Output
 
-```bash
-docker run -d -p 4499:4499 tapupan/wisecow:latest
-```
+```text
+APPLICATION HEALTH CHECK
 
----
-
-## Kubernetes Deployment
-
-Deploy resources:
-
-```bash
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
-kubectl apply -f k8s/ingress.yaml
-```
-
-Verify:
-
-```bash
-kubectl get pods
-kubectl get svc
-kubectl get ingress
+URL: http://localhost:4499
+HTTP Status Code: 200
+Application Status: UP
 ```
 
 ---
 
-## CI/CD Pipeline
+# Technologies Used
 
-GitHub Actions automatically:
-
-1. Builds Docker image
-2. Logs into Docker Hub
-3. Pushes image to Docker Hub
-
-Triggered on every push to the main branch.
-
----
-
-## Deployment Verification
-
-Successfully verified:
-
-- Docker container running locally
-- Application accessible on localhost:4499
-- Kubernetes pods running
-- Service accessible through Minikube
-- Docker image pushed to Docker Hub
-- GitHub Actions workflow completed successfully
+* Docker
+* Kubernetes
+* Minikube
+* GitHub Actions
+* Docker Hub
+* Python
+* Linux
+* Ingress NGINX
+* TLS
 
 ---
 
-## Author
+# Author
 
-Breed Varpe
+**Breed Varpe**
 
 GitHub:
 https://github.com/Breedv
